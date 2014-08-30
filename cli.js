@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
 
 app.use(serveStatic(__dirname));
 
-var gdata = false;
+var gdata;
 app.get('/data', function(req, res) {
         res.json(gdata);
 });
