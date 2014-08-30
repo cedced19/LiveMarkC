@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="//cedced19.github.io/img/favicon.ico">
+
+    <title>LiveMarkC</title>
+
+    <!-- build:css /vendor/css/styles.css -->
+    <link href="/vendor/css/main.css" rel="stylesheet" type="text/css" media="screen">
+    <!-- endbuild -->
+    <link rel="stylesheet" href="/vendor/css/print.css" type="text/css" media="print" />
+  </head>
+
+<body onload="init()">
+
+    <div class="left">
+        <textarea id="markdown"></textarea>
+    </div>
+
+    <div class="right" id="preview"></div>
+
+    <div class="button-box">
+      <div id="print" class="button">Print</div>
+      <div id="reset" class="button">Reset</div>
+      <a class="button" href="//github.com/cedced19/LiveMarkC/wiki">Syntax</a>
+    </div>
+
+    <script src="/socket.io/socket.io.js" type="text/javascript"></script>
+    <!-- build:js /vendor/js/scripts.js -->
+    <script src="/vendor/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/vendor/js/client.js" type="text/javascript"></script>
+    <!-- endbuild -->
+  </body>
+</html>
