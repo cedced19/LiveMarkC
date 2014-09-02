@@ -1,6 +1,6 @@
 {
   "name": "livemark-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A software to write a text with a friend",
   "main": "cli.js",
   "dependencies": {
@@ -8,15 +8,15 @@
     "chalk": "0.5.1",
     "serve-static": "^1.5.3",
     "express": "4.8.5",
-    "markdown": "^0.5.0",
-    "socket.io": "^1.0.6"
+    "socket.io": "^1.0.6",
+    "github-flavored-markdown": "^1.0.1"
   },
   "bin": {
     "docs": "cli.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cedced19/LiveDocs"
+    "url": "git://github.com/cedced19/LiveMarkC"
   },
   "keywords": [
     "live",
@@ -26,12 +26,9 @@
     "multi"
   ],
   "bugs": {
-    "url": "https://github.com/cedced19/LiveDocs/issues"
+    "url": "https://github.com/cedced19/LiveMarkC/issues"
   },
-  "homepage": "https://github.com/cedced19/LiveDocs",
-  "bin": {
-    "docs": "cli.js"
-  },
+  "homepage": "https://github.com/cedced19/LiveMarkC",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-uglify": "~0.5.0",

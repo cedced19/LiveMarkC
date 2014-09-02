@@ -7,7 +7,7 @@ var   opn = require('opn'),
         serveStatic = require('serve-static'),
         io = require('socket.io').listen(server),
         fs = require('fs'),
-        markdown = require('markdown').markdown,
+        markdown = require('github-flavored-markdown'),
         chalk = require('chalk');
 
 app.get('/', function(req, res) {
@@ -30,7 +30,7 @@ server.listen(781, function() {
 
 io.sockets.on('connection', function(socket){
     socket.on('change', function(data){
-         data.md = markdown.toHTML(data.txt);
+         data.after = markdown.parse(data.before);
          gdata = data;
          io.sockets.emit('change', data);
     });
