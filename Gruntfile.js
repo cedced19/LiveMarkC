@@ -10,6 +10,7 @@ var config = {
             'package.json',
             'vendor/**/*',
             'cli.js',
+            'showdown.js',
             'README.md'
           ],
           dest: 'dist/'
@@ -21,13 +22,6 @@ var config = {
     },
     usemin: {
         html: 'dist/index.html'
-    },
-    cssmin: {
-      print: {
-        files: {
-          'dist/vendor/css/print.css': ['dist/vendor/css/print.css']
-        }
-      }
     },
     htmlmin: {
           dist: {

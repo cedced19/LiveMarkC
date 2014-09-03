@@ -7,7 +7,7 @@ var   opn = require('opn'),
         serveStatic = require('serve-static'),
         io = require('socket.io').listen(server),
         fs = require('fs'),
-        markdown = require('github-flavored-markdown'),
+        markdown = require('./showdown'),
         chalk = require('chalk');
 
 app.get('/', function(req, res) {
