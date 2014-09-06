@@ -1,6 +1,6 @@
 var socket = io.connect(window.location.host);
-var $textarea = $('textarea');
-var textarea = document.getElementById('markdown')
+var $textarea = $('textarea'); // jQuery
+var textarea = document.getElementById('markdown'); // JavaScript
 
 function initTextArea () {
     textarea.addEventListener('keyup', function(event) {
@@ -20,7 +20,7 @@ socket.on('change', function(data){
 function initPrint () {
   var button = document.getElementById('print');
   button.addEventListener('click', function(event) {
-    socket.emit('change', {before: textarea.val()});
+    socket.emit('change', {before: $textarea.val()});
     window.print();
   });
 }
