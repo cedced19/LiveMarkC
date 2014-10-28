@@ -2,16 +2,15 @@
   "name": "livemark-cli",
   "version": "0.0.6",
   "description": "A software to write a text with a friend",
-  "main": "cli.js",
+  "main": "livemark.js",
   "dependencies": {
-    "opn": "^1.0.0",
     "chalk": "0.5.1",
     "serve-static": "^1.5.3",
     "express": "4.8.5",
     "socket.io": "^1.0.6"
   },
   "bin": {
-    "docs": "cli.js"
+    "docs": "livemark.js"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-var   opn = require('opn'),
-        express = require('express'),
+var   express = require('express'),
         app = express(),
         server = require('http').createServer(app), // Html and WebRTC Server
         serveStatic = require('serve-static'),
@@ -23,14 +22,13 @@ app.get('/data', function(req, res) {
         res.json(gdata);
 });
 
-server.listen(781, function() {
-    console.log('Server running at\n  => ' + chalk.green('http://localhost:781') + '\nCTRL + C to shutdown');
-    opn('http://localhost:781');
+server.listen(7773, function() {
+    console.log('Server running at\n  => ' + chalk.green('http://localhost:7773') + '\nCTRL + C to shutdown');
 });
 
 io.sockets.on('connection', function(socket){
     socket.on('change', function(data){
-         data.after = markdown.parse(data.before);
+         data.after = markdown.parse(data.before).replace(/\n/g, '');
          gdata = data;
          io.sockets.emit('change', data);
     });

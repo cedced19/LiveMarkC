@@ -9,7 +9,7 @@ var config = {
             '*.html',
             'package.json',
             'vendor/**/*',
-            'cli.js',
+            'livemark.js',
             'showdown.js',
             'README.md'
           ],
