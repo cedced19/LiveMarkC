@@ -6,14 +6,14 @@ var   express = require('express'),
         serveStatic = require('serve-static'),
         io = require('socket.io').listen(server),
         fs = require('fs'),
+        program = require('commander'),
         markdown = require('./showdown'),
         chalk = require('chalk');
 
-app.get('/', function(req, res) {
-  fs.readFile(__dirname + '/index.html', function(err, data) {
-    res.end(data);
-  });
-});
+program
+  .version(require('./package.json').version)
+  .option('-p, --port [number]', 'Specified the port')
+  .parse(process.argv);
 
 app.use(serveStatic(__dirname));
 
@@ -22,14 +22,20 @@ app.get('/data', function(req, res) {
         res.json(gdata);
 });
 
-server.listen(7773, function() {
-    console.log('Server running at\n  => ' + chalk.green('http://localhost:7773') + '\nCTRL + C to shutdown');
-});
-
 io.sockets.on('connection', function(socket){
     socket.on('change', function(data){
          data.after = markdown.parse(data.before).replace(/\n/g, '');
          gdata = data;
          io.sockets.emit('change', data);
     });
+});
+
+if (!isNaN(parseFloat(program.port)) && isFinite(program.port)){
+  var port = program.port;
+}else{
+  var port = 7773;
+}
+
+server.listen(port, function() {
+    console.log('Server running at\n  => ' + chalk.green('http://localhost:' + port) + '\nCTRL + C to shutdown');
 });
