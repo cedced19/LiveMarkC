@@ -12,7 +12,7 @@ var   express = require('express'),
 
 program
   .version(require('./package.json').version)
-  .option('-p, --port [number]', 'Specified the port')
+  .option('-p, --port [number]', 'specified the port')
   .parse(process.argv);
 
 app.use(serveStatic(__dirname));

@@ -17,11 +17,11 @@ $ docs
 ####How to write a text?
 You can write a text at the left side with this [syntax](//github.com/cedced19/LiveMarkC/wiki).
 
-##Option
+##Options
 
-    -h, --help                         output usage information
+    -h, --help                  output usage information
 
-    -V, --version                    output the version number
+    -V, --version               output the version number
 
     -p, --port [number]          specified the port
 

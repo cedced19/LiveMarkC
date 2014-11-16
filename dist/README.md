@@ -13,8 +13,17 @@ $ npm install -g livemark-cli
 $ docs
 ```
 
+
 ####How to write a text?
 You can write a text at the left side with this [syntax](//github.com/cedced19/LiveMarkC/wiki).
+
+##Options
+
+    -h, --help                  output usage information
+
+    -V, --version               output the version number
+
+    -p, --port [number]          specified the port
 
 ##Demo
 ![](https://raw.githubusercontent.com/cedced19/LiveMarkC/master/demo.png)
