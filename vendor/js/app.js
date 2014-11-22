@@ -4,15 +4,19 @@ $(document).ready(function() {
   textarea = document.getElementById('markdown');
 
   $.getJSON('/data', function (data) {
-      if (data != null){
+      if (data !== null){
         $textarea.val(data.before);
         $('#preview').html(data.after);
       }
   });
 
-  $("#print").click(function() {
+  $('#print').click(function() {
     socket.emit('change', {before: $textarea.val()});
     window.print();
+  });
+
+  $('#math').click(function() {
+    socket.emit('katex', {before: $textarea.val()});
   });
 
   $textarea.keyup(function() {
@@ -23,7 +27,7 @@ $(document).ready(function() {
         var positions = {
           start: getPositionStart(),
           end: getPositionEnd()
-        }
+        };
         $textarea.val(data.before);
         setPosition(positions.start, positions.end);
         $('#preview').html(data.after);
@@ -39,7 +43,7 @@ $(document).ready(function() {
     range.moveToBookmark(document.selection.createRange().getBookmark());
     range.moveEnd('character', textarea.value.length);
     return textarea.value.length - range.text.length;
-  }
+  };
 
   var getPositionEnd = function () {
     if ( typeof textarea.selectionEnd != 'undefined' ){
@@ -51,7 +55,7 @@ $(document).ready(function() {
     range.moveToBookmark(document.selection.createRange().getBookmark());
     range.moveStart('character', - textarea.value.length);
     return range.text.length;
-  }
+  };
 
   var setPosition = function (end, start) {
     end = end || start;   textarea.focus();
@@ -63,6 +67,6 @@ $(document).ready(function() {
         range.moveEnd('character', - textarea.value.length + end);
         range.select();
       }
-  }
+  };
 
 });

@@ -8,6 +8,7 @@ var   express = require('express'),
         fs = require('fs'),
         program = require('commander'),
         markdown = require('./showdown'),
+        katex = require('katex'),
         chalk = require('chalk');
 
 program
@@ -25,6 +26,12 @@ app.get('/data', function(req, res) {
 io.sockets.on('connection', function(socket){
     socket.on('change', function(data){
          data.after = markdown.parse(data.before).replace(/\n/g, '');
+         gdata = data;
+         io.sockets.emit('change', data);
+    });
+    socket.on('katex', function(data){
+         data.before.replace(/#/g, '');
+         data.after = katex.renderToString(data.before);
          gdata = data;
          io.sockets.emit('change', data);
     });

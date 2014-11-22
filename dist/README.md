@@ -34,7 +34,7 @@ To launch in developpement:
 
 ```bash
 $ npm install
-$ node cli.js
+$ node livemark.js
 ```
 
 To launch in release:
@@ -43,7 +43,7 @@ To launch in release:
 $ npm install
 $ grunt
 $ cd dist/
-$ node cli.js
+$ node livemark.js
 ```
 
 NOTE: dist/ is the dist folder.
