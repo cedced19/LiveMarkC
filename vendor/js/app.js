@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var socket = io.connect(window.location.host),
-  $textarea = $('textarea'),
+  $textarea = $('#markdown'),
   textarea = document.getElementById('markdown');
 
   $.getJSON('/data', function (data) {
