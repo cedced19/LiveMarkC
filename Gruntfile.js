@@ -10,7 +10,7 @@ var config = {
             'package.json',
             'vendor/**/*',
             'livemark.js',
-            'showdown.js',
+            'favicon.ico',
             'README.md'
           ],
           dest: 'dist/'

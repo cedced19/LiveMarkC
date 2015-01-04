@@ -1,29 +1,29 @@
 $(document).ready(function() {
   var socket = io.connect(window.location.host),
-  $textarea = $('#markdown'),
-  textarea = document.getElementById('markdown');
+      $textarea = $('#markdown'),
+      textarea = document.getElementById('markdown');
 
-  $.getJSON('/data', function (data) {
-      if (data !== null){
+  $.getJSON('/api', function (data) {
+      if (data !== null) {
         $textarea.val(data.before);
         $('#preview').html(data.after);
       }
   });
 
-  $('#print').click(function() {
+  $('#print').click(function () {
     socket.emit('change', {before: $textarea.val()});
     window.print();
   });
 
-  $('#math').click(function() {
+  $('#math').click(function () {
     socket.emit('katex', {before: $textarea.val()});
   });
 
-  $textarea.keyup(function() {
+  $textarea.keyup(function () {
     socket.emit('change', {before: $textarea.val()});
   });
 
-  socket.on('change', function(data){
+  socket.on('change', function (data){
         var positions = {
           start: getPositionStart(),
           end: getPositionEnd()

@@ -7,25 +7,38 @@ var   express = require('express'),
         io = require('socket.io').listen(server),
         fs = require('fs'),
         program = require('commander'),
-        markdown = require('./showdown'),
+        marked = require('marked'),
         katex = require('katex'),
-        chalk = require('chalk');
+        gdata,
+        pkg = require('./package.json'),
+        port = 7773,
+        colors = require('colors');
 
 program
-  .version(require('./package.json').version)
+  .version(pkg.version)
   .option('-p, --port [number]', 'specified the port')
   .parse(process.argv);
 
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: true,
+  pedantic: true,
+  sanitize: true,
+  smartLists: true,
+  smartypants: true
+});
+
 app.use(serveStatic(__dirname));
 
-var gdata;
-app.get('/data', function(req, res) {
+app.get('/api', function(req, res) {
         res.json(gdata);
 });
 
 io.sockets.on('connection', function(socket){
     socket.on('change', function(data){
-         data.after = markdown.parse(data.before).replace(/\n/g, '');
+         data.after = marked(data.before).replace(/\n/g, '');
          gdata = data;
          io.sockets.emit('change', data);
     });
@@ -38,11 +51,14 @@ io.sockets.on('connection', function(socket){
 });
 
 if (!isNaN(parseFloat(program.port)) && isFinite(program.port)){
-  var port = program.port;
-}else{
-  var port = 7773;
+  port = program.port;
 }
 
 server.listen(port, function() {
-    console.log('Server running at\n  => ' + chalk.green('http://localhost:' + port) + '\nCTRL + C to shutdown');
+    require('check-update')({packageName: pkg.name, packageVersion: pkg.version, isCLI: true}, function(err, latestVersion, defaultMessage){
+        if(!err){
+            console.log(defaultMessage);
+        }
+    });
+    console.log('Server running at\n  => ' + colors.green('http://localhost:' + port) + '\nCTRL + C to shutdown');
 });
