@@ -8,16 +8,16 @@ A real time application to write with your friends in the same time.
 
 ![demo](https://raw.githubusercontent.com/cedced19/LiveMarkC/master/demo.png)
 
-####How to write a text?
+#### How to write a text?
 You can write a text at the left side with this [syntax](//github.com/cedced19/LiveMarkC/wiki).
 
-##CLI
+## CLI
 ```bash
 $ npm install learn-memory -g
 $ docs
 ```
 
-####Options
+#### Options
 
 ```
 -h, --help                  output usage information
@@ -27,7 +27,7 @@ $ docs
 -p, --port [number]          specified the port
 ```
 
-##Server
+## Server
 
 ```bash
 $ git clone https://github.com/cedced19/LivemarkC

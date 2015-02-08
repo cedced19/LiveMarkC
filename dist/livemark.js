@@ -1,18 +1,15 @@
 #!/usr/bin/env node
 'use strict';
-var   express = require('express'),
-        app = express(),
-        server = require('http').createServer(app), // Html and WebRTC Server
-        serveStatic = require('serve-static'),
-        io = require('socket.io').listen(server),
-        fs = require('fs'),
-        program = require('commander'),
-        marked = require('marked'),
-        katex = require('katex'),
-        gdata,
-        pkg = require('./package.json'),
-        port = 7773,
-        colors = require('colors');
+var hapi = require('hapi'),
+    app = new hapi.Server(),
+    fs = require('fs'),
+    program = require('commander'),
+    marked = require('marked'),
+    katex = require('katex'),
+    gdata,
+    pkg = require('./package.json'),
+    port = 7773,
+    colors = require('colors');
 
 program
   .version(pkg.version)
@@ -30,12 +27,57 @@ marked.setOptions({
   smartypants: true
 });
 
-app.use(serveStatic(__dirname));
+if (!isNaN(parseFloat(program.port)) && isFinite(program.port)){
+  port = program.port;
+}
 
-app.get('/api', function(req, res) {
-        res.json(gdata);
+app.connection({ port: port }); 
+
+app.route({
+    method: 'GET',
+    path: '/api/',
+    handler: function (request, reply) {
+        reply(gdata);
+    }
 });
 
+app.route({
+    method: 'GET',
+    path: '/vendor/{param*}',
+    handler: {
+        directory: {
+            path: './vendor/'
+        }
+    }
+});
+
+app.route({
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        reply.file('index.html');
+    }
+});
+
+
+app.route({
+    method: 'GET',
+    path: '/favicon.ico',
+    handler: function (request, reply) {
+        reply.file('favicon.ico');
+    }
+});
+
+app.start(function() {
+    require('check-update')({packageName: pkg.name, packageVersion: pkg.version, isCLI: true}, function(err, latestVersion, defaultMessage){
+        if(!err){
+            console.log(defaultMessage);
+        }
+    });
+    console.log('Server running at\n  => ' + colors.green('http://localhost:' + port) + '\nCTRL + C to shutdown');
+});
+
+var io = require('socket.io').listen(app.listener)
 io.sockets.on('connection', function(socket){
     socket.on('change', function(data){
          data.after = marked(data.before).replace(/\n/g, '');
@@ -48,17 +90,4 @@ io.sockets.on('connection', function(socket){
          gdata = data;
          io.sockets.emit('change', data);
     });
-});
-
-if (!isNaN(parseFloat(program.port)) && isFinite(program.port)){
-  port = program.port;
-}
-
-server.listen(port, function() {
-    require('check-update')({packageName: pkg.name, packageVersion: pkg.version, isCLI: true}, function(err, latestVersion, defaultMessage){
-        if(!err){
-            console.log(defaultMessage);
-        }
-    });
-    console.log('Server running at\n  => ' + colors.green('http://localhost:' + port) + '\nCTRL + C to shutdown');
 });

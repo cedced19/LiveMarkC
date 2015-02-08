@@ -3,7 +3,7 @@ $(document).ready(function() {
       $textarea = $('#markdown'),
       textarea = document.getElementById('markdown');
 
-  $.getJSON('/api', function (data) {
+  $.getJSON('/api/', function (data) {
       if (data !== null) {
         $textarea.val(data.before);
         $('#preview').html(data.after);

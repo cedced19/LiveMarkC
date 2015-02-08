@@ -1,16 +1,15 @@
 {
   "name": "livemark-cli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A software to write a text with a friend",
   "main": "livemark.js",
   "dependencies": {
     "check-update": "0.0.5",
     "colors": "^1.0.3",
     "commander": "^2.5.0",
-    "express": "4.10.2",
+    "hapi": "^8.1.0",
     "katex": "^0.1.1",
     "marked": "^0.3.2",
-    "serve-static": "^1.5.3",
     "socket.io": "^1.0.6"
   },
   "bin": {
