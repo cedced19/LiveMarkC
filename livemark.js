@@ -46,7 +46,7 @@ app.route({
     path: '/vendor/{param*}',
     handler: {
         directory: {
-            path: './vendor/'
+            path: __dirname + '/vendor/'
         }
     }
 });
@@ -55,7 +55,7 @@ app.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        reply.file('index.html');
+        reply.file(__dirname + '/index.html');
     }
 });
 
@@ -64,7 +64,7 @@ app.route({
     method: 'GET',
     path: '/favicon.ico',
     handler: function (request, reply) {
-        reply.file('favicon.ico');
+        reply.file(__dirname + '/favicon.ico');
     }
 });
 

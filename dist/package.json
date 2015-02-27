@@ -1,6 +1,6 @@
 {
   "name": "livemark-cli",
-  "version": "0.0.9-1",
+  "version": "0.0.9-2",
   "description": "A real time application to write with your friends in the same time.",
   "main": "livemark.js",
   "dependencies": {
