@@ -45,8 +45,8 @@ $(document).ready(function() {
     return textarea.value.length - range.text.length;
   };
 
-  var getPositionEnd = function () {
-    if ( typeof textarea.selectionEnd != 'undefined' ){
+  var getPositionEnd = function (input) {
+    if (typeof textarea.selectionEnd != 'undefined'){
       return textarea.selectionEnd;
     }
     // IE Support

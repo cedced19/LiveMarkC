@@ -77,7 +77,7 @@ app.start(function() {
     console.log('Server running at\n  => ' + colors.green('http://localhost:' + port) + '\nCTRL + C to shutdown');
 });
 
-var io = require('socket.io').listen(app.listener)
+var io = require('socket.io').listen(app.listener);
 io.sockets.on('connection', function(socket){
     socket.on('change', function(data){
          data.after = marked(data.before).replace(/\n/g, '');
