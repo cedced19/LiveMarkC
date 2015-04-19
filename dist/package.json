@@ -4,11 +4,11 @@
   "description": "A real time application to write with your friends in the same time.",
   "main": "livemark.js",
   "dependencies": {
-    "check-update": "0.0.7",
+    "check-update": "0.0.8",
     "colors": "^1.0.3",
     "commander": "^2.5.0",
     "hapi": "^8.1.0",
-    "katex": "^0.1.1",
+    "katex": "^0.2.0",
     "marked": "^0.3.2",
     "socket.io": "^1.0.6"
   },
@@ -32,13 +32,13 @@
   "homepage": "https://github.com/cedced19/livemark-cli",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-contrib-uglify": "~0.6.0",
-    "matchdep": "~0.3.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-copy": "~0.7.0",
-    "grunt-usemin": "^2.2.0",
-    "grunt-contrib-htmlmin": "^0.3.0",
-    "grunt-contrib-concat": "^0.5.0"
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-htmlmin": "^0.4.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-usemin": "^3.0.0",
+    "matchdep": "~0.3.0"
   },
   "author": {
     "name": "Cédric",
