@@ -3,7 +3,6 @@
 A real time application to write with your friends in the same time.
 
 [![Build Status](https://travis-ci.org/cedced19/livemark-cli.svg?branch=master)](https://travis-ci.org/cedced19/livemark-cli)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 [![NPM version](https://badge.fury.io/js/livemark-cli.svg)](http://badge.fury.io/js/livemark-cli)
 
 ![demo](https://raw.githubusercontent.com/cedced19/livemark-cli/master/demo.png)

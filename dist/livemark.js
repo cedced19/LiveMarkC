@@ -5,7 +5,6 @@ var hapi = require('hapi'),
     fs = require('fs'),
     program = require('commander'),
     marked = require('marked'),
-    katex = require('katex'),
     gdata,
     pkg = require('./package.json'),
     port = 7773,
@@ -15,6 +14,10 @@ program
   .version(pkg.version)
   .option('-p, --port [number]', 'specified the port')
   .parse(process.argv);
+
+if (!isNaN(parseFloat(program.port)) && isFinite(program.port)){
+  port = program.port;
+}
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -27,11 +30,7 @@ marked.setOptions({
   smartypants: true
 });
 
-if (!isNaN(parseFloat(program.port)) && isFinite(program.port)){
-  port = program.port;
-}
-
-app.connection({ port: port }); 
+app.connection({ port: port });
 
 app.route({
     method: 'GET',
@@ -81,12 +80,6 @@ var io = require('socket.io').listen(app.listener);
 io.sockets.on('connection', function(socket){
     socket.on('change', function(data){
          data.after = marked(data.before).replace(/\n/g, '');
-         gdata = data;
-         io.sockets.emit('change', data);
-    });
-    socket.on('katex', function(data){
-         data.before.replace(/#/g, '');
-         data.after = katex.renderToString(data.before);
          gdata = data;
          io.sockets.emit('change', data);
     });

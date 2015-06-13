@@ -15,10 +15,6 @@ $(document).ready(function() {
         window.print();
     });
 
-    $('#math').click(function () {
-        socket.emit('katex', {before: $textarea.val()});
-    });
-
     $textarea.keyup(function () {
         socket.emit('change', {before: $textarea.val()});
     });
@@ -34,7 +30,7 @@ $(document).ready(function() {
     });
 
     var getPositionStart = function () {
-        if ( typeof textarea.selectionStart != 'undefined' ){
+        if (typeof textarea.selectionStart != 'undefined' ){
             return textarea.selectionStart;
         }
         // IE Support
